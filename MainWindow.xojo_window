@@ -17,8 +17,8 @@ Begin DesktopWindow MainWindow
    MaximumWidth    =   32000
    MenuBar         =   2045237247
    MenuBarVisible  =   False
-   MinimumHeight   =   240
-   MinimumWidth    =   420
+   MinimumHeight   =   150
+   MinimumWidth    =   230
    Resizeable      =   True
    Title           =   "Countdown"
    Type            =   0
@@ -119,6 +119,18 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Resized()
+		  UpdateFontSize
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
+		  UpdateFontSize
+		End Sub
+	#tag EndEvent
+
 
 	#tag Method, Flags = &h0
 		Sub ResetCountdown()
@@ -126,6 +138,12 @@ End
 		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, 25, 1)
 		  CountdownTimer.RunMode = Timer.RunModes.Multiple
 		  UpdateLabel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateFontSize()
+		  CountdownLabel.FontSize = If(Width >= 420, kBigFontSize, kSmallFontSize)
 		End Sub
 	#tag EndMethod
 
@@ -151,6 +169,13 @@ End
 	#tag Property, Flags = &h0
 		FinishTime As DateTime
 	#tag EndProperty
+
+
+	#tag Constant, Name = kBigFontSize, Type = Double, Dynamic = False, Default = \"120", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kSmallFontSize, Type = Double, Dynamic = False, Default = \"60", Scope = Private
+	#tag EndConstant
 
 
 #tag EndWindowCode
