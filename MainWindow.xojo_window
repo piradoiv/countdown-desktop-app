@@ -1,7 +1,7 @@
 #tag DesktopWindow
 Begin DesktopWindow MainWindow
    Backdrop        =   0
-   BackgroundColor =   &c32323200
+   BackgroundColor =   NormalBackgroundColor
    Composite       =   False
    DefaultLocation =   2
    FullScreen      =   False
