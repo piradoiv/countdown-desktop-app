@@ -9,6 +9,7 @@ BuildSteps=Build Automation;Build Automation.xojo_code;&h0000000075FA6FFF;&h0000
 Folder=Colors;Colors;&h000000002A664FFF;&h0000000000000000;false
 ColorAsset=NormalBackgroundColor;Colors/NormalBackgroundColor.xojo_color;&h0000000068BA97FF;&h000000002A664FFF;false
 ColorAsset=FinishedBackgroundColor;Colors/FinishedBackgroundColor.xojo_color;&h000000005A533FFF;&h000000002A664FFF;false
+Class=AppSettings;AppSettings.xojo_code;&h0000000006C4CFFF;&h0000000000000000;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

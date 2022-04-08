@@ -101,8 +101,21 @@ End
 
 #tag WindowCode
 	#tag Event
+		Sub Closing()
+		  App.Settings.Left = Left
+		  App.Settings.Top = Top
+		  App.Settings.Width = Width
+		  App.Settings.Height = Height
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Opening()
 		  ResetCountdown
+		  Left = App.Settings.Left
+		  Top = App.Settings.Top
+		  Width = App.Settings.Width
+		  Height = App.Settings.Height
 		End Sub
 	#tag EndEvent
 
