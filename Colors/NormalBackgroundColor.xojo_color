@@ -1,0 +1,8 @@
+#tag ColorGroup
+	CodeName=NormalBackgroundColor
+	#tag Color
+		Type=2
+		Platform=1
+		Name=windowBackgroundColor
+	#tag EndColor
+#tag EndColorGroup

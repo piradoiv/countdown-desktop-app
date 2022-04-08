@@ -1,11 +1,11 @@
 #tag DesktopWindow
 Begin DesktopWindow MainWindow
    Backdrop        =   0
-   BackgroundColor =   &cFFFFFF
+   BackgroundColor =   &c32323200
    Composite       =   False
    DefaultLocation =   2
    FullScreen      =   False
-   HasBackgroundColor=   False
+   HasBackgroundColor=   True
    HasCloseButton  =   True
    HasFullScreenButton=   True
    HasMaximizeButton=   True
@@ -109,6 +109,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ResetCountdown()
+		  MainWindow.BackgroundColor = NormalBackgroundColor
 		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, 25, 1)
 		  CountdownTimer.RunMode = Timer.RunModes.Multiple
 		  UpdateLabel
@@ -122,13 +123,14 @@ End
 		  If diffSeconds <= 0 Then
 		    diffSeconds = 0
 		    CountdownTimer.RunMode = Timer.RunModes.Off
+		    MainWindow.BackgroundColor = FinishedBackgroundColor
 		  End If
 		  
 		  Var minutes As Integer = diffSeconds / 60
 		  Var seconds As Integer = diffSeconds Mod 60
 		  
 		  CountdownLabel.Text = minutes.ToString(Locale.Current, "00") _
-		   + ":" + seconds.ToString(Locale.Current, "00")
+		  + ":" + seconds.ToString(Locale.Current, "00")
 		End Sub
 	#tag EndMethod
 
@@ -389,14 +391,6 @@ End
 		Group="Deprecated"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FinishTime"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
