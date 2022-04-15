@@ -262,6 +262,12 @@ End
 		  g.FontSize = 20
 		End Function
 	#tag EndEvent
+	#tag Event
+		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
+		  g.DrawingColor = If(row Mod 2 = 0, TableBackgroundColor, TableBackgroundAltColor)
+		  g.FillRectangle(0, 0, g.Width, g.Height)
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

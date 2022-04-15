@@ -1,0 +1,9 @@
+#tag ColorGroup
+	CodeName=TableBackgroundColor
+	#tag Color
+		Type=1
+		Platform=1
+		Light=FFFFFF27
+		Dark=00000027
+	#tag EndColor
+#tag EndColorGroup
