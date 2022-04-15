@@ -161,7 +161,7 @@ Begin DesktopWindow SettingsDialog
       Bold            =   False
       ColumnCount     =   1
       ColumnWidths    =   ""
-      DefaultRowHeight=   -1
+      DefaultRowHeight=   30
       DropIndicatorVisible=   False
       Enabled         =   True
       FontName        =   "System"
@@ -255,6 +255,12 @@ End
 		Sub SelectionChanged()
 		  PreviewLabel.FontName = Me.SelectedRowValue
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
+		  g.FontName = Me.CellTextAt(row, 0)
+		  g.FontSize = 20
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
