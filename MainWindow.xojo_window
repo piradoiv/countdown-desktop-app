@@ -137,6 +137,7 @@ End
 		  App.Settings.Top = Top
 		  App.Settings.Width = Width
 		  App.Settings.Height = Height
+		  App.Settings.FontName = CountdownLabel.FontName
 		End Sub
 	#tag EndEvent
 
@@ -147,6 +148,7 @@ End
 		  Top = App.Settings.Top
 		  Width = App.Settings.Width
 		  Height = App.Settings.Height
+		  CountdownLabel.FontName = App.Settings.FontName
 		End Sub
 	#tag EndEvent
 

@@ -10,6 +10,7 @@ Protected Class AppSettings
 		    result.Top = json.Lookup("top", 100)
 		    result.Width = json.Lookup("width", 600)
 		    result.Height = json.Lookup("height", 400)
+		    result.FontName = json.Lookup("font_name", "Monaco")
 		  Catch
 		  End Try
 		  
@@ -24,11 +25,16 @@ Protected Class AppSettings
 		  json.Value("top") = Top
 		  json.Value("width") = Width
 		  json.Value("height") = Height
+		  json.Value("font_name") = FontName
 		  
 		  Return GenerateJSON(json)
 		End Function
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		FontName As String = "Monaco"
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Height As Integer = 400
@@ -93,6 +99,22 @@ Protected Class AppSettings
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Height"
+			Visible=false
+			Group="Behavior"
+			InitialValue="400"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Visible=false
+			Group="Behavior"
+			InitialValue="600"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
