@@ -174,6 +174,41 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub UpdateDockIcon(minutes As String)
+		  If LastMinuteShown = minutes Then Return
+		  LastMinuteShown = minutes
+		  
+		  Const radius = 1400
+		  Const padding = 200
+		  
+		  Var g As Graphics = App.DockItem.Graphics
+		  
+		  g.ClearRectangle(0, 0, g.Width, g.Height)
+		  g.ShadowBrush = New ShadowBrush(0, 20, Color.RGB(0, 0, 0, 200), 100)
+		  
+		  // TODO: Try with RadialGradientBrush
+		  Var linearBrush As New LinearGradientBrush
+		  linearBrush.StartPoint = New Point(0, 0)
+		  linearBrush.EndPoint = New Point(g.Width, g.Height)
+		  linearBrush.GradientStops.Add(New Pair(0.0, &cCE3635))
+		  linearBrush.GradientStops.Add(New Pair(0.5, &c7B1111))
+		  
+		  g.Brush = linearBrush
+		  g.FillRoundRectangle(padding, padding, g.Width - padding * 2, g.Height - padding * 2, radius, radius)
+		  g.ShadowBrush = Nil
+		  g.Brush = Nil
+		  
+		  g.DrawingColor = Color.White
+		  g.FontSize = 700
+		  g.FontName = App.Settings.FontName
+		  Var textWidth As Integer = g.TextWidth(minutes)
+		  g.DrawText(minutes, g.Width / 2 - textWidth / 2, g.Height / 2 + g.FontSize / 3)
+		  
+		  App.DockItem.UpdateNow
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub UpdateFontSize()
 		  CountdownLabel.FontSize = If(Width >= 420, kBigFontSize, kSmallFontSize)
@@ -195,12 +230,18 @@ End
 		  
 		  CountdownLabel.Text = minutes.ToString(Locale.Current, "00") _
 		  + ":" + seconds.ToString(Locale.Current, "00")
+		  
+		  UpdateDockIcon(minutes.ToString("00"))
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
 		FinishTime As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		LastMinuteShown As String = "-"
 	#tag EndProperty
 
 
