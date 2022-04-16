@@ -185,23 +185,11 @@ End
 		  Var g As Graphics = App.DockItem.Graphics
 		  
 		  g.ClearRectangle(0, 0, g.Width, g.Height)
-		  g.ShadowBrush = New ShadowBrush(0, 20, Color.RGB(0, 0, 0, 200), 100)
-		  
-		  // TODO: Try with RadialGradientBrush
-		  Var linearBrush As New LinearGradientBrush
-		  linearBrush.StartPoint = New Point(0, 0)
-		  linearBrush.EndPoint = New Point(g.Width, g.Height)
-		  linearBrush.GradientStops.Add(New Pair(0.0, &cCE3635))
-		  linearBrush.GradientStops.Add(New Pair(0.5, &c7B1111))
-		  
-		  g.Brush = linearBrush
-		  g.FillRoundRectangle(padding, padding, g.Width - padding * 2, g.Height - padding * 2, radius, radius)
-		  g.ShadowBrush = Nil
-		  g.Brush = Nil
-		  
+		  g.DrawPicture(icon_background, 0, 0, g.Width, g.Height, 0, 0, icon_background.Width, icon_background.Height)
 		  g.DrawingColor = Color.White
-		  g.FontSize = 700
+		  g.FontSize = 720
 		  g.FontName = App.Settings.FontName
+		  
 		  Var textWidth As Integer = g.TextWidth(minutes)
 		  g.DrawText(minutes, g.Width / 2 - textWidth / 2, g.Height / 2 + g.FontSize / 3)
 		  
