@@ -10,7 +10,7 @@ Begin DesktopWindow SettingsDialog
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   400
+   Height          =   430
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -49,7 +49,7 @@ Begin DesktopWindow SettingsDialog
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   360
+      Top             =   390
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -80,7 +80,7 @@ Begin DesktopWindow SettingsDialog
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   360
+      Top             =   390
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -144,7 +144,7 @@ Begin DesktopWindow SettingsDialog
       TextAlignment   =   3
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   132
+      Top             =   164
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -173,7 +173,7 @@ Begin DesktopWindow SettingsDialog
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   207
+      Height          =   209
       Index           =   -2147483648
       InitialValue    =   ""
       Italic          =   False
@@ -190,7 +190,7 @@ Begin DesktopWindow SettingsDialog
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   132
+      Top             =   164
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -198,12 +198,121 @@ Begin DesktopWindow SettingsDialog
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
+   Begin DesktopLabel TimeLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Time:"
+      TextAlignment   =   3
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   132
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
+   Begin DesktopTextField MinutesTextField
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   132
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "25"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   132
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   "##"
+      Visible         =   True
+      Width           =   41
+   End
+   Begin DesktopLabel MinutesLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   185
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Minutes"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   132
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Property, Flags = &h21
 		Private mSelectedFont As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTimerMinutes As Integer = 25
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -226,6 +335,21 @@ End
 		SelectedFont As String
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mTimerMinutes
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mTimerMinutes = value
+			  MinutesTextField.Text = value.ToString
+			End Set
+		#tag EndSetter
+		TimerMinutes As Integer
+	#tag EndComputedProperty
+
 
 #tag EndWindowCode
 
@@ -233,6 +357,7 @@ End
 	#tag Event
 		Sub Pressed()
 		  SelectedFont = FontListBox.SelectedRowValue
+		  TimerMinutes = MinutesTextField.Text.Val
 		  Self.Close
 		End Sub
 	#tag EndEvent
@@ -513,6 +638,6 @@ End
 		Group="Behavior"
 		InitialValue=""
 		Type="String"
-		EditorType=""
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior

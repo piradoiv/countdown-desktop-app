@@ -133,6 +133,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Closing()
+		  App.Settings.TimerMinutes = Minutes
 		  App.Settings.Left = Left
 		  App.Settings.Top = Top
 		  App.Settings.Width = Width
@@ -143,6 +144,7 @@ End
 
 	#tag Event
 		Sub Opening()
+		  Minutes = App.Settings.TimerMinutes
 		  ResetCountdown
 		  Left = App.Settings.Left
 		  Top = App.Settings.Top
@@ -168,7 +170,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub ResetCountdown()
 		  MainWindow.BackgroundColor = NormalBackgroundColor
-		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, 25, 1)
+		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, Minutes, 1)
 		  CountdownTimer.RunMode = Timer.RunModes.Multiple
 		  UpdateLabel
 		End Sub
@@ -229,6 +231,10 @@ End
 		Private LastMinuteShown As String = "-"
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private Minutes As Integer = 25
+	#tag EndProperty
+
 
 	#tag Constant, Name = kBigFontSize, Type = Double, Dynamic = False, Default = \"120", Scope = Private
 	#tag EndConstant
@@ -258,9 +264,16 @@ End
 		Sub Pressed()
 		  Var d As New SettingsDialog
 		  d.SelectedFont = CountdownLabel.FontName
+		  d.TimerMinutes = Minutes
 		  d.ShowModal(Self)
 		  
 		  CountdownLabel.FontName = d.SelectedFont
+		  Var oldMinutesValue As Integer = Minutes
+		  Minutes = d.TimerMinutes
+		  
+		  If oldMinutesValue <> Minutes Then
+		    ResetCountdown
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -499,14 +512,6 @@ End
 		Group="Deprecated"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LastMinuteShown"
-		Visible=false
-		Group="Behavior"
-		InitialValue="-"
-		Type="String"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

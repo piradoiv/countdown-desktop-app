@@ -11,6 +11,7 @@ Protected Class AppSettings
 		    result.Width = json.Lookup("width", 600)
 		    result.Height = json.Lookup("height", 400)
 		    result.FontName = json.Lookup("font_name", "Monaco")
+		    result.TimerMinutes = json.Lookup("timer_minutes", 25)
 		  Catch
 		  End Try
 		  
@@ -26,6 +27,7 @@ Protected Class AppSettings
 		  json.Value("width") = Width
 		  json.Value("height") = Height
 		  json.Value("font_name") = FontName
+		  json.Value("timer_minutes") = TimerMinutes
 		  
 		  Return GenerateJSON(json)
 		End Function
@@ -42,6 +44,10 @@ Protected Class AppSettings
 
 	#tag Property, Flags = &h0
 		Left As Integer = 20
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		TimerMinutes As Integer = 25
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -124,7 +130,7 @@ Protected Class AppSettings
 			Group="Behavior"
 			InitialValue="Monaco"
 			Type="String"
-			EditorType=""
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
