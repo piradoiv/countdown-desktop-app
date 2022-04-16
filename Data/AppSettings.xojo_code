@@ -118,6 +118,14 @@ Protected Class AppSettings
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontName"
+			Visible=false
+			Group="Behavior"
+			InitialValue="Monaco"
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

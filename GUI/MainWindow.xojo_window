@@ -1,13 +1,13 @@
 #tag DesktopWindow
-Begin DesktopWindow SettingsDialog
+Begin DesktopWindow MainWindow
    Backdrop        =   0
-   BackgroundColor =   &cFFFFFF
+   BackgroundColor =   NormalBackgroundColor
    Composite       =   False
    DefaultLocation =   2
    FullScreen      =   False
-   HasBackgroundColor=   False
+   HasBackgroundColor=   True
    HasCloseButton  =   True
-   HasFullScreenButton=   False
+   HasFullScreenButton=   True
    HasMaximizeButton=   True
    HasMinimizeButton=   True
    Height          =   400
@@ -15,21 +15,93 @@ Begin DesktopWindow SettingsDialog
    MacProcID       =   0
    MaximumHeight   =   32000
    MaximumWidth    =   32000
-   MenuBar         =   ""
+   MenuBar         =   2045237247
    MenuBarVisible  =   False
-   MinimumHeight   =   64
-   MinimumWidth    =   64
+   MinimumHeight   =   150
+   MinimumWidth    =   230
    Resizeable      =   True
-   Title           =   "Untitled"
-   Type            =   8
+   Title           =   "Countdown"
+   Type            =   0
    Visible         =   True
    Width           =   600
-   Begin DesktopButton OkButton
+   Begin DesktopLabel CountdownLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "Monaco"
+      FontSize        =   120.0
+      FontUnit        =   0
+      Height          =   328
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "--:--"
+      TextAlignment   =   2
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   560
+   End
+   Begin DesktopButton ResetButton
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "OK"
-      Default         =   True
+      Caption         =   "Reset"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   360
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin Timer CountdownTimer
+      Enabled         =   True
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Period          =   1000
+      RunMode         =   2
+      Scope           =   2
+      TabPanelIndex   =   0
+   End
+   Begin DesktopButton SettingsButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Settings"
+      Default         =   False
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
@@ -44,229 +116,164 @@ Begin DesktopWindow SettingsDialog
       LockRight       =   True
       LockTop         =   False
       MacButtonStyle  =   0
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   360
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
-   Begin DesktopButton CancelButton
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Cancel          =   True
-      Caption         =   "Cancel"
-      Default         =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   408
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      MacButtonStyle  =   0
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   360
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
-   Begin DesktopLabel PreviewLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   60.0
-      FontUnit        =   0
-      Height          =   100
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
+      Scope           =   2
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "12:34"
-      TextAlignment   =   2
-      TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   20
+      Top             =   360
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   560
-   End
-   Begin DesktopLabel FontNameLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Font name:"
-      TextAlignment   =   3
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   132
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
-   End
-   Begin DesktopListBox FontListBox
-      AllowAutoDeactivate=   True
-      AllowAutoHideScrollbars=   True
-      AllowExpandableRows=   False
-      AllowFocusRing  =   True
-      AllowResizableColumns=   False
-      AllowRowDragging=   False
-      AllowRowReordering=   False
-      Bold            =   False
-      ColumnCount     =   1
-      ColumnWidths    =   ""
-      DefaultRowHeight=   30
-      DropIndicatorVisible=   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      GridLineStyle   =   0
-      HasBorder       =   True
-      HasHeader       =   False
-      HasHorizontalScrollbar=   False
-      HasVerticalScrollbar=   True
-      HeadingIndex    =   -1
-      Height          =   207
-      Index           =   -2147483648
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   132
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      RequiresSelection=   False
-      RowSelectionType=   0
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   132
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   448
-      _ScrollWidth    =   -1
+      Width           =   80
    End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Closing()
+		  App.Settings.Left = Left
+		  App.Settings.Top = Top
+		  App.Settings.Width = Width
+		  App.Settings.Height = Height
+		  App.Settings.FontName = CountdownLabel.FontName
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Opening()
+		  ResetCountdown
+		  Left = App.Settings.Left
+		  Top = App.Settings.Top
+		  Width = App.Settings.Width
+		  Height = App.Settings.Height
+		  CountdownLabel.FontName = App.Settings.FontName
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  UpdateFontSize
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
+		  UpdateFontSize
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Sub ResetCountdown()
+		  MainWindow.BackgroundColor = NormalBackgroundColor
+		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, 25, 1)
+		  CountdownTimer.RunMode = Timer.RunModes.Multiple
+		  UpdateLabel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateDockIcon(minutes As String)
+		  If LastMinuteShown = minutes Then Return
+		  LastMinuteShown = minutes
+		  
+		  Const radius = 1400
+		  Const padding = 200
+		  
+		  Var g As Graphics = App.DockItem.Graphics
+		  
+		  g.ClearRectangle(0, 0, g.Width, g.Height)
+		  g.ShadowBrush = New ShadowBrush(0, 20, Color.RGB(0, 0, 0, 200), 100)
+		  
+		  // TODO: Try with RadialGradientBrush
+		  Var linearBrush As New LinearGradientBrush
+		  linearBrush.StartPoint = New Point(0, 0)
+		  linearBrush.EndPoint = New Point(g.Width, g.Height)
+		  linearBrush.GradientStops.Add(New Pair(0.0, &cCE3635))
+		  linearBrush.GradientStops.Add(New Pair(0.5, &c7B1111))
+		  
+		  g.Brush = linearBrush
+		  g.FillRoundRectangle(padding, padding, g.Width - padding * 2, g.Height - padding * 2, radius, radius)
+		  g.ShadowBrush = Nil
+		  g.Brush = Nil
+		  
+		  g.DrawingColor = Color.White
+		  g.FontSize = 700
+		  g.FontName = App.Settings.FontName
+		  Var textWidth As Integer = g.TextWidth(minutes)
+		  g.DrawText(minutes, g.Width / 2 - textWidth / 2, g.Height / 2 + g.FontSize / 3)
+		  
+		  App.DockItem.UpdateNow
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateFontSize()
+		  CountdownLabel.FontSize = If(Width >= 420, kBigFontSize, kSmallFontSize)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateLabel()
+		  Var remainingTime As DateInterval = FinishTime - DateTime.Now
+		  
+		  If remainingTime.Minutes <= 0 And remainingTime.Seconds <= 0 Then
+		    CountdownTimer.RunMode = Timer.RunModes.Off
+		    MainWindow.BackgroundColor = FinishedBackgroundColor
+		  End If
+		  
+		  Var minutes As String = remainingTime.Minutes.ToString("00")
+		  Var seconds As String = remainingTime.Seconds.ToString("00")
+		  
+		  CountdownLabel.Text = minutes + ":" + seconds
+		  UpdateDockIcon(minutes)
+		End Sub
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h21
-		Private mSelectedFont As String
+		Private FinishTime As DateTime
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mSelectedFont
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mSelectedFont = value
-			  For i As Integer = 0 To FontListBox.LastRowIndex
-			    If value = FontListBox.CellTextAt(i, 0) Then
-			      FontListBox.SelectedRowIndex = i
-			      Return
-			    End If
-			  Next i
-			End Set
-		#tag EndSetter
-		SelectedFont As String
-	#tag EndComputedProperty
+	#tag Property, Flags = &h21
+		Private LastMinuteShown As String = "-"
+	#tag EndProperty
+
+
+	#tag Constant, Name = kBigFontSize, Type = Double, Dynamic = False, Default = \"120", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kSmallFontSize, Type = Double, Dynamic = False, Default = \"60", Scope = Private
+	#tag EndConstant
 
 
 #tag EndWindowCode
 
-#tag Events OkButton
+#tag Events ResetButton
 	#tag Event
 		Sub Pressed()
-		  SelectedFont = FontListBox.SelectedRowValue
-		  Self.Close
+		  ResetCountdown
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events CancelButton
+#tag Events CountdownTimer
 	#tag Event
-		Sub Pressed()
-		  Self.Close
+		Sub Action()
+		  UpdateLabel
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events FontListBox
+#tag Events SettingsButton
 	#tag Event
-		Sub Opening()
-		  For i As Integer = 0 To System.FontCount - 1
-		    Me.AddRow(System.FontAt(i))
-		  Next i
+		Sub Pressed()
+		  Var d As New SettingsDialog
+		  d.SelectedFont = CountdownLabel.FontName
+		  d.ShowModal(Self)
+		  
+		  CountdownLabel.FontName = d.SelectedFont
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub SelectionChanged()
-		  PreviewLabel.FontName = Me.SelectedRowValue
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
-		  g.FontName = Me.CellTextAt(row, 0)
-		  g.FontSize = 20
-		End Function
-	#tag EndEvent
-	#tag Event
-		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
-		  g.DrawingColor = If(row Mod 2 = 0, TableBackgroundColor, TableBackgroundAltColor)
-		  g.FillRectangle(0, 0, g.Width, g.Height)
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
@@ -504,6 +511,14 @@ End
 		Group="Deprecated"
 		InitialValue="False"
 		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LastMinuteShown"
+		Visible=false
+		Group="Behavior"
+		InitialValue="-"
+		Type="String"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
