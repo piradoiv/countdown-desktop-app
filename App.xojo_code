@@ -2,6 +2,14 @@
 Protected Class App
 Inherits DesktopApplication
 	#tag Event
+		Function AppleEventReceived(theEvent As AppleEvent, eventClass As String, eventID As String) As Boolean
+		  If eventClass = "aevt" And eventID = "rapp" Then
+		    MainWindow.Show
+		  End If
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Closing()
 		  Try
 		    If SettingsFile.Exists Then SettingsFile.Remove
@@ -15,9 +23,7 @@ Inherits DesktopApplication
 
 	#tag Event
 		Sub Opening()
-		  AllowAutoQuit = True
 		  Settings = New AppSettings
-		  
 		  AppFolder = SpecialFolder.ApplicationData.Child("es.rcruz.countdown")
 		  SettingsFile = AppFolder.Child("settings.json")
 		  
