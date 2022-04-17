@@ -44,6 +44,10 @@ Inherits DesktopApplication
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		FinishTime As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Settings As AppSettings
 	#tag EndProperty
 

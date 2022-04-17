@@ -145,12 +145,20 @@ End
 	#tag Event
 		Sub Opening()
 		  Minutes = App.Settings.TimerMinutes
-		  ResetCountdown
 		  Left = App.Settings.Left
 		  Top = App.Settings.Top
 		  Width = App.Settings.Width
 		  Height = App.Settings.Height
 		  CountdownLabel.FontName = App.Settings.FontName
+		  
+		  If App.FinishTime = Nil Then
+		    ResetCountdown
+		  End If
+		  UpdateLabel
+		  
+		  If App.Settings.HideMainWindowOnStart Then
+		    Self.Hide
+		  End If
 		End Sub
 	#tag EndEvent
 
@@ -170,7 +178,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub ResetCountdown()
 		  MainWindow.BackgroundColor = NormalBackgroundColor
-		  FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, Minutes, 1)
+		  App.FinishTime = DateTime.Now.AddInterval(0, 0, 0, 0, Minutes, 1)
 		  CountdownTimer.RunMode = Timer.RunModes.Multiple
 		  UpdateLabel
 		End Sub
@@ -207,7 +215,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub UpdateLabel()
-		  Var remainingTime As DateInterval = FinishTime - DateTime.Now
+		  Var remainingTime As DateInterval = App.FinishTime - DateTime.Now
 		  
 		  If remainingTime.Minutes <= 0 And remainingTime.Seconds <= 0 Then
 		    CountdownTimer.RunMode = Timer.RunModes.Off
@@ -222,10 +230,6 @@ End
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h21
-		Private FinishTime As DateTime
-	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private LastMinuteShown As String = "-"
@@ -265,11 +269,13 @@ End
 		  Var d As New SettingsDialog
 		  d.SelectedFont = CountdownLabel.FontName
 		  d.TimerMinutes = Minutes
+		  d.HideMainWindowOnStart = App.Settings.HideMainWindowOnStart
 		  d.ShowModal(Self)
 		  
 		  CountdownLabel.FontName = d.SelectedFont
 		  Var oldMinutesValue As Integer = Minutes
 		  Minutes = d.TimerMinutes
+		  App.Settings.HideMainWindowOnStart = d.HideMainWindowOnStart
 		  
 		  If oldMinutesValue <> Minutes Then
 		    ResetCountdown

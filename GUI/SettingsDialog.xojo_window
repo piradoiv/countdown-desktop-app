@@ -173,7 +173,7 @@ Begin DesktopWindow SettingsDialog
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   209
+      Height          =   161
       Index           =   -2147483648
       InitialValue    =   ""
       Italic          =   False
@@ -303,10 +303,58 @@ Begin DesktopWindow SettingsDialog
       Visible         =   True
       Width           =   100
    End
+   Begin DesktopCheckBox HideOnStartCheckBox
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Hide the main window on start"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   132
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   2
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   336
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      VisualState     =   0
+      Width           =   448
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mHideOnStart
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mHideOnStart = value
+			  HideOnStartCheckBox.Value = value
+			End Set
+		#tag EndSetter
+		HideMainWindowOnStart As Boolean
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		mHideOnStart As Boolean = False
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private mSelectedFont As String
 	#tag EndProperty
@@ -358,6 +406,7 @@ End
 		Sub Pressed()
 		  SelectedFont = FontListBox.SelectedRowValue
 		  TimerMinutes = MinutesTextField.Text.Val
+		  HideMainWindowOnStart = HideOnStartCheckBox.Value
 		  Self.Close
 		End Sub
 	#tag EndEvent
@@ -639,5 +688,13 @@ End
 		InitialValue=""
 		Type="String"
 		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TimerMinutes"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

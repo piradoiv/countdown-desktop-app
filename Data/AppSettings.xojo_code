@@ -12,6 +12,7 @@ Protected Class AppSettings
 		    result.Height = json.Lookup("height", 400)
 		    result.FontName = json.Lookup("font_name", "Monaco")
 		    result.TimerMinutes = json.Lookup("timer_minutes", 25)
+		    result.HideMainWindowOnStart = json.Lookup("hide_on_start", False)
 		  Catch
 		  End Try
 		  
@@ -28,6 +29,7 @@ Protected Class AppSettings
 		  json.Value("height") = Height
 		  json.Value("font_name") = FontName
 		  json.Value("timer_minutes") = TimerMinutes
+		  json.Value("hide_on_start") = HideMainWindowOnStart
 		  
 		  Return GenerateJSON(json)
 		End Function
@@ -40,6 +42,10 @@ Protected Class AppSettings
 
 	#tag Property, Flags = &h0
 		Height As Integer = 400
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		HideMainWindowOnStart As Boolean = False
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -131,6 +137,14 @@ Protected Class AppSettings
 			InitialValue="Monaco"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TimerMinutes"
+			Visible=false
+			Group="Behavior"
+			InitialValue="25"
+			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
